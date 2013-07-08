@@ -3,22 +3,23 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>jQuery Mobile Demos</title>
-	<link rel="stylesheet"  href="css/themes/default/jquery.mobile-1.3.1.min.css">
-	<link rel="stylesheet" href="_assets/css/jqm-demos.css">
-	<link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-	<script src="js/jquery.js"></script>
-	<script src="_assets/js/index.js"></script>
-	<script src="js/jquery.mobile-1.3.1.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
+	<title>Grid Listview - jQuery Mobile Demos</title>
+	<link rel="stylesheet"  href="../../css/themes/default/jquery.mobile-1.3.1.min.css">
+	<link rel="stylesheet" href="../../_assets/css/jqm-demos.css">
+	<link rel="shortcut icon" href="../../favicon.ico">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="grid-listview.css" id="grid-listview-css">
+	<script src="../../js/jquery.js"></script>
+	<script src="../../_assets/js/index.js"></script>
+	<script src="../../js/jquery.mobile-1.3.1.min.js"></script>
 </head>
 <body>
-<div data-role="page" class="jqm-demos jqm-demos-home">
+<div data-role="page" class="jqm-demos">
 
 	<div data-role="header" class="jqm-header">
-		<h1 class="jqm-logo"><img src="_assets/img/jquery-logo.png" alt="jQuery Mobile Framework"></h1>
-		<a href="#" class="jqm-search-link ui-btn-right" data-icon="search" data-iconpos="notext">Search</a>
+		<h1 class="jqm-logo"><a href="../../"><img src="../../_assets/img/jquery-logo.png" alt="jQuery Mobile Framework"></a></h1>
+		<a href="#" class="jqm-navmenu-link" data-icon="bars" data-iconpos="notext">Navigation</a>
+		<a href="#" class="jqm-search-link" data-icon="search" data-iconpos="notext">Search</a>
 <div class="jqm-search">
     <ul class="jqm-list">
 <li data-section="Widgets" data-filtertext="accordions collapsible sets content formatting grouped inset mini"><a href="widgets/accordions/">Accordion</a></li>
@@ -242,33 +243,37 @@
 
 	<div data-role="content" class="jqm-content">
 
-		<div class="jqm-home-welcome">
-		<h2>Demo center for <span class="jqm-version-number"></span></h2>
+        <h1>Grid Listview</h1>
 
-		<p class="jqm-intro">jQuery Mobile is a touch-optimized HTML5 UI framework designed to make sites and apps that are accessible on all popular smartphone, tablet and desktop devices.</p>
+        <p class="jqm-intro">A regular listview on smartphones, but grid tiles on tablets and larger screens? This demo shows you how you can accomplish this with custom CSS.</p>
 
-        <p class="jqm-intro"><small>For technical info,&nbsp;visit the <a href="#api-popup" data-rel="popup" data-transition="slideup" data-position-to="window">API documentation</a>.</small></p>
+        <h2>Starting points</h2>
 
-		</div>
+        <p>Create a listview from an unordered list. For this demo we used an inset listview to show you how you can apply the corner styling to the tiles as well.</p>
 
-		<div data-role="popup" id="api-popup" class="home-pop ui-content" data-theme="d" data-overlay-theme="b">
-			<p>The API docs are a separate site from the demos and cover the technical details of each jQuery Mobile plugin in depth.</p>
-			<a href="#" data-role="button" data-inline="true" data-rel="back"  data-mini="true" data-theme="c">Stay here</a>
-			<a href="http://api.jquerymobile.com" class="jqm-button" data-ajax="false" data-role="button" data-inline="true" data-mini="true" data-icon="arrow-r" data-iconpos="right" data-theme="f">Visit API Site </a>
-		</div>
+        <p>In this demo there are two breakpoints. At the first breakpoint we swap from the regular stacked layout to a three column grid layout with tiles. At the second we swith from three to four columns.</p>
 
-		<ul data-role="listview" data-inset="true" data-theme="d" data-icon="false" data-filter-placeholder="Search..." class="jqm-list jqm-home-list">
-            <li><a href="intro/"><h2>Introduction</h2><p>New to jQuery Mobile? Start here.</p></a></li>
-            <li><a href="examples/"><h2>Demo Showcase</h2><p>Examples of how to customize and extend jQuery Mobile.</p></a></li>
-            <li><a href="faq/"><h2>Questions &amp; Answers</h2><p>Common issues and questions, explained.</p></a></li>
-			<li data-section="Widgets" data-filtertext="responsive web design rwd adaptive PE accessible mobile breakpoints media query"><a href="intro/rwd.html"><h2>Going Responsive</h2><p>How to use RWD with jQuery Mobile</p></a></li>
-		</ul>
+        <p>The list items have a thumbail. In the grid layout those will get the same size as the tile. One list item doesn't hold an image to demonstrate how you can take advantage of class <code>ui-li-has-thumb</code> to adjust the style.</p>
 
-		<h2 class="jqm-home-widget">Widget reference</h2>
+        <a href="grid-listview-demo.html" class="jqm-button" data-ajax="false" data-role="button" data-inline="true" data-mini="true" data-icon="arrow-r" data-iconpos="right">Open demo</a>
 
-		<p class="jqm-intro">Test drive every component in the library, and easily build pages by copying and pasting the markup configuration you need.</p>
+        <div data-demo-html="#demo-page" data-demo-css="#grid-listview-css"></div>
 
-		<ul data-role="listview" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="d" data-icon="false" data-filter-placeholder="Search widgets..." data-global-nav="demos" class="jqm-list">
+	</div><!-- /content -->
+
+	<div data-role="footer" class="jqm-footer">
+		<p class="jqm-version"></p>
+		<p>Copyright 2013 The jQuery Foundation</p>
+	</div><!-- /footer -->
+    <div data-role="panel" class="jqm-nav-panel jqm-navmenu-panel" data-position="left" data-display="reveal" data-theme="c">
+        <ul data-role="listview" data-theme="d" data-divider-theme="d" data-icon="false" data-global-nav="demos" class="jqm-list">
+            <li data-role="list-divider">jQuery Mobile Demos</li>
+			<li><a href="./">Home</a></li>
+            <li><a href="intro/">Introduction</a></li>
+            <li><a href="examples/">Demo Showcase</a></li>
+            <li><a href="faq/">Questions & Answers</a></li>
+			<li><a href="intro/rwd.html">Going Responsive</a></li>
+            <li data-role="list-divider">Widget reference</li>
 <li data-section="Widgets" data-filtertext="accordions collapsible sets content formatting grouped inset mini"><a href="widgets/accordions/">Accordion</a></li>
 
 <li data-section="Widgets" data-filtertext="ajax navigation navigate event method"><a href="widgets/navigation/" data-ajax="false">AJAX Navigation</a></li>
@@ -332,13 +337,77 @@
 <li data-section="Widgets" data-filtertext="page transitions animated pages ajax navigation flip slide fade pop" data-ajax="false"><a href="widgets/transitions/" data-ajax="false">Transitions</a></li>
 
         </ul>
+	</div><!-- /panel -->
+
+
+</div><!-- /page -->
+
+<!-- The markup below is a copy of the actual demo page just so we can show the markup in the "view source" -->
+
+<div data-role="page" data-theme="a" id="demo-page" class="my-page">
+
+	<div data-role="header">
+		<h1>News</h1>
+		<a href="grid-listview.html" data-shadow="false" data-iconshadow="false" data-icon="arrow-l" data-iconpos="notext" data-rel="back" data-ajax="false">Back</a>
+	</div><!-- /header -->
+
+	<div data-role="content">
+
+        <ul data-role="listview" data-inset="true">
+        	<li><a href="#">
+            	<img src="../../_assets/img/apple.png">
+            	<h2>iOS 6.1</h2>
+                <p>Apple released iOS 6.1</p>
+                <p class="ui-li-aside">iOS</p>
+            </a></li>
+        	<li><a href="#">
+            	<img src="../../_assets/img/blackberry_10.png">
+            	<h2>BlackBerry 10</h2>
+                <p>BlackBerry launched the Z10 and Q10 with the new BB10 OS</p>
+                <p class="ui-li-aside">BlackBerry</p>
+            </a></li>
+        	<li><a href="#">
+            	<img src="../../_assets/img/lumia_800.png">
+            	<h2>WP 7.8</h2>
+                <p>Nokia rolls out WP 7.8 to Lumia 800</p>
+                <p class="ui-li-aside">Windows Phone</p>
+            </a></li>
+        	<li><a href="#">
+            	<img src="../../_assets/img/galaxy_express.png">
+            	<h2>Galaxy</h2>
+                <p>New Samsung Galaxy Express</p>
+                <p class="ui-li-aside">Samsung</p>
+            </a></li>
+        	<li><a href="#">
+            	<img src="../../_assets/img/nexus_7.png">
+            	<h2>Nexus 7</h2>
+                <p>Rumours about new full HD Nexus 7</p>
+                <p class="ui-li-aside">Android</p>
+            </a></li>
+        	<li><a href="#">
+            	<img src="../../_assets/img/firefox_os.png">
+            	<h2>Firefox OS</h2>
+                <p>ZTE to launch Firefox OS smartphone at MWC</p>
+                <p class="ui-li-aside">Firefox</p>
+            </a></li>
+        	<li><a href="#">
+            	<img src="../../_assets/img/tizen.png">
+            	<h2>Tizen</h2>
+                <p>First Samsung phones with Tizen can be expected in 2013</p>
+                <p class="ui-li-aside">Tizen</p>
+            </a></li>
+        	<li><a href="#">
+            	<h2>Symbian</h2>
+                <p>Nokia confirms the end of Symbian</p>
+                <p class="ui-li-aside">Symbian</p>
+            </a></li>
+        </ul>
 
 	</div><!-- /content -->
 
-	<div data-role="footer" class="jqm-footer">
-		<p class="jqm-version"></p>
-		<p>Copyright 2013 The jQuery Foundation</p>
-	</div><!-- /jqm-footer -->
+    <div data-role="footer" data-theme="none">
+        <h3>Responsive Grid Listview</h3>
+    </div><!-- /footer -->
 
 </div><!-- /page -->
 </body>

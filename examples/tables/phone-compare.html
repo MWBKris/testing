@@ -3,22 +3,87 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>jQuery Mobile Demos</title>
-	<link rel="stylesheet"  href="css/themes/default/jquery.mobile-1.3.1.min.css">
-	<link rel="stylesheet" href="_assets/css/jqm-demos.css">
-	<link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-	<script src="js/jquery.js"></script>
-	<script src="_assets/js/index.js"></script>
-	<script src="js/jquery.mobile-1.3.1.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
+	<title>Table Column toggle demo: Phone comparison - jQuery Mobile Demos</title>
+	<link rel="stylesheet"  href="../../css/themes/default/jquery.mobile-1.3.1.min.css">
+	<link rel="stylesheet" href="../../_assets/css/jqm-demos.css">
+	<link rel="shortcut icon" href="../../favicon.ico">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<script src="../../js/jquery.js"></script>
+	<script src="../../_assets/js/index.js"></script>
+	<script src="../../js/jquery.mobile-1.3.1.min.js"></script>
+	<style>
+		/*These apply across all breakpoints because they are outside of a media query */
+		table.phone-compare thead th {
+			background-color: #fff;
+		}
+		table.phone-compare thead th h4 {
+			text-transform: uppercase;
+			font-size: 0.6em;
+			margin: 0;
+		}
+		table.phone-compare thead th h3 {
+			font-size: .9em;
+			margin: -.4em 0 .8em 0;
+		}
+		table.phone-compare th.label {
+			text-transform: uppercase;
+			font-size: 0.6em;
+			opacity: 0.5;
+			padding: 1.2em .8em;
+			background-color: #ddd;
+		}
+		table.phone-compare tbody tr.photos td {
+			background-color: #fff;
+			padding: 0;
+		}
+		table.phone-compare tbody tr.photos img {
+			max-width: 100%;
+			min-width: 60px;
+		}
+		/*	Use the target selector to style the column chooser button */
+		a[href="#phone-table-popup"] {
+			margin-bottom: 1.2em;
+		}
+		/* Show priority 1 at 320px (20em x 16px) */
+		@media screen and (min-width: 20em) {
+			.phone-compare th.ui-table-priority-1,
+			.phone-compare td.ui-table-priority-1 {
+				display: table-cell;
+			}
+		}
+		/* Show priority 2 at 560px (35em x 16px) */
+		@media screen and (min-width: 35em) {
+			.phone-compare th.ui-table-priority-2,
+			.phone-compare td.ui-table-priority-2 {
+				display: table-cell;
+			}
+		}
+		/* Show priority 3 at 720px (45em x 16px) */
+		@media screen and (min-width: 45em) {
+			.phone-compare th.ui-table-priority-3,
+			.phone-compare td.ui-table-priority-3 {
+				display: table-cell;
+			}
+		}
+		/* Manually hidden */
+		.phone-compare th.ui-table-cell-hidden,
+		.phone-compare td.ui-table-cell-hidden {
+			display: none;
+		}
+		/* Manually shown */
+		.phone-compare th.ui-table-cell-visible,
+		.phone-compare td.ui-table-cell-visible {
+			display: table-cell;
+		}
+	</style>
 </head>
 <body>
-<div data-role="page" class="jqm-demos jqm-demos-home">
+<div data-role="page" class="jqm-demos">
 
-	<div data-role="header" class="jqm-header">
-		<h1 class="jqm-logo"><img src="_assets/img/jquery-logo.png" alt="jQuery Mobile Framework"></h1>
-		<a href="#" class="jqm-search-link ui-btn-right" data-icon="search" data-iconpos="notext">Search</a>
+    <div data-role="header" class="jqm-header">
+		<h1 class="jqm-logo"><a href="../../"><img src="../../_assets/img/jquery-logo.png" alt="jQuery Mobile Framework"></a></h1>
+        <a href="#" class="jqm-navmenu-link" data-icon="bars" data-iconpos="notext">Navigation</a>
+        <a href="#" class="jqm-search-link" data-icon="search" data-iconpos="notext">Search</a>
 <div class="jqm-search">
     <ul class="jqm-list">
 <li data-section="Widgets" data-filtertext="accordions collapsible sets content formatting grouped inset mini"><a href="widgets/accordions/">Accordion</a></li>
@@ -238,37 +303,112 @@
     </ul>
 </div>
 
-	</div><!-- /header -->
+    </div><!-- /header -->
 
-	<div data-role="content" class="jqm-content">
+	<div data-role="content" class="jqm-content jqm-fullwidth">
 
-		<div class="jqm-home-welcome">
-		<h2>Demo center for <span class="jqm-version-number"></span></h2>
+        <h1>Popular Phones</h1>
 
-		<p class="jqm-intro">jQuery Mobile is a touch-optimized HTML5 UI framework designed to make sites and apps that are accessible on all popular smartphone, tablet and desktop devices.</p>
+		<p>This is an example of how to use the column toggle table to create a comparison view where products can be shown or hidden.</p>
 
-        <p class="jqm-intro"><small>For technical info,&nbsp;visit the <a href="#api-popup" data-rel="popup" data-transition="slideup" data-position-to="window">API documentation</a>.</small></p>
+		<div data-demo-html="true" data-demo-css="true">
 
-		</div>
+			<table data-role="table" id="phone-table" data-mode="columntoggle" data-column-btn-text="Compare..." data-column-btn-theme="a" class="phone-compare ui-shadow table-stroke">
+              <thead>
+                <tr>
+                  <th class="label">Model</th>
+                <th>
+					<h4>Apple</h4>
+					<h3>iPhone 5</h3>
+				</th>
+				<th data-priority="1">
+					<h4>Samsung</h4>
+					<h3>Galaxy S III</h3>
+				</th>
+				<th data-priority="2">
+					<h4>Nokia</h4>
+					<h3>Lumia 920</h3>
+				</th>
+				<th data-priority="3">
+					<h4>HTC</h4>
+					<h3>One X</h3>
+				</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="photos">
+                  <th class="label">Photo</th>
+                  <td><a href="#img-iphone5" data-rel="popup" data-position-to="window"><img src="../../_assets/img/phone_iphone5.png" /></a></td>
+                  <td><a href="#img-galaxy" data-rel="popup" data-position-to="window"><img src="../../_assets/img/phone_galaxy3.png" /></a></td>
+                  <td><a href="#img-lumia" data-rel="popup" data-position-to="window"><img src="../../_assets/img/phone_lumia920.png" /></a></td>
+                  <td><a href="#img-onex" data-rel="popup" data-position-to="window"><img src="../../_assets/img/phone_onex.png" /></a></td>
+                </tr>
+                <tr>
+                  <th class="label">Height</th>
+                  <td>4.87"</td>
+                  <td>5.38"</td>
+                  <td>5.11"</td>
+                  <td>5.3"</td>
+                </tr>
+                <tr>
+                  <th class="label">Width</th>
+                  <td>2.31"</td>
+                  <td>2.78"</td>
+                  <td>2.79"</td>
+                  <td>2.75"</td>
+                </tr>
+                <tr>
+                  <th class="label">Depth</th>
+                  <td>0.3"</td>
+                  <td>0.34"</td>
+                  <td>0.42"</td>
+                  <td>0.37"</td>
+                </tr>
+                <tr>
+                  <th class="label">Weight (lbs.)</th>
+                  <td>0.25</td>
+                  <td>0.29</td>
+                  <td>0.41</td>
+                  <td>0.29</td>
+                </tr>
+              </tbody>
+            </table>
 
-		<div data-role="popup" id="api-popup" class="home-pop ui-content" data-theme="d" data-overlay-theme="b">
-			<p>The API docs are a separate site from the demos and cover the technical details of each jQuery Mobile plugin in depth.</p>
-			<a href="#" data-role="button" data-inline="true" data-rel="back"  data-mini="true" data-theme="c">Stay here</a>
-			<a href="http://api.jquerymobile.com" class="jqm-button" data-ajax="false" data-role="button" data-inline="true" data-mini="true" data-icon="arrow-r" data-iconpos="right" data-theme="f">Visit API Site </a>
-		</div>
+			<!-- Popups for lightbox images -->
 
-		<ul data-role="listview" data-inset="true" data-theme="d" data-icon="false" data-filter-placeholder="Search..." class="jqm-list jqm-home-list">
-            <li><a href="intro/"><h2>Introduction</h2><p>New to jQuery Mobile? Start here.</p></a></li>
-            <li><a href="examples/"><h2>Demo Showcase</h2><p>Examples of how to customize and extend jQuery Mobile.</p></a></li>
-            <li><a href="faq/"><h2>Questions &amp; Answers</h2><p>Common issues and questions, explained.</p></a></li>
-			<li data-section="Widgets" data-filtertext="responsive web design rwd adaptive PE accessible mobile breakpoints media query"><a href="intro/rwd.html"><h2>Going Responsive</h2><p>How to use RWD with jQuery Mobile</p></a></li>
-		</ul>
+			<div id="img-iphone5" data-role="popup" data-overlay-theme="a">
+				<img src="../../_assets/img/phone_iphone5.png">
+			</div>
 
-		<h2 class="jqm-home-widget">Widget reference</h2>
+			<div id="img-galaxy" data-role="popup" data-overlay-theme="a">
+				<img src="../../_assets/img/phone_galaxy3.png">
+			</div>
 
-		<p class="jqm-intro">Test drive every component in the library, and easily build pages by copying and pasting the markup configuration you need.</p>
+			<div id="img-lumia" data-role="popup" data-overlay-theme="a">
+				<img src="../../_assets/img/phone_lumia920.png">
+			</div>
 
-		<ul data-role="listview" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="d" data-icon="false" data-filter-placeholder="Search widgets..." data-global-nav="demos" class="jqm-list">
+			<div id="img-onex" data-role="popup" data-overlay-theme="a">
+				<img src="../../_assets/img/phone_onex.png">
+			</div>
+
+		</div><!-- /data-demo -->
+
+	</div><!-- /content -->
+
+	<div data-role="footer" class="jqm-footer">
+		<p class="jqm-version"></p>
+		<p>Copyright 2013 The jQuery Foundation</p>
+	</div><!-- /footer -->
+    <div data-role="panel" class="jqm-nav-panel jqm-navmenu-panel" data-position="left" data-display="reveal" data-theme="c">
+        <ul data-role="listview" data-theme="d" data-divider-theme="d" data-icon="false" data-global-nav="demos" class="jqm-list">
+            <li data-role="list-divider">jQuery Mobile Demos</li>
+			<li><a href="./">Home</a></li>
+            <li><a href="intro/">Introduction</a></li>
+            <li><a href="examples/">Demo Showcase</a></li>
+            <li><a href="faq/">Questions & Answers</a></li>
+			<li><a href="intro/rwd.html">Going Responsive</a></li>
+            <li data-role="list-divider">Widget reference</li>
 <li data-section="Widgets" data-filtertext="accordions collapsible sets content formatting grouped inset mini"><a href="widgets/accordions/">Accordion</a></li>
 
 <li data-section="Widgets" data-filtertext="ajax navigation navigate event method"><a href="widgets/navigation/" data-ajax="false">AJAX Navigation</a></li>
@@ -332,13 +472,8 @@
 <li data-section="Widgets" data-filtertext="page transitions animated pages ajax navigation flip slide fade pop" data-ajax="false"><a href="widgets/transitions/" data-ajax="false">Transitions</a></li>
 
         </ul>
+	</div><!-- /panel -->
 
-	</div><!-- /content -->
-
-	<div data-role="footer" class="jqm-footer">
-		<p class="jqm-version"></p>
-		<p>Copyright 2013 The jQuery Foundation</p>
-	</div><!-- /jqm-footer -->
 
 </div><!-- /page -->
 </body>

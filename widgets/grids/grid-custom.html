@@ -1,24 +1,118 @@
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>jQuery Mobile Demos</title>
-	<link rel="stylesheet"  href="css/themes/default/jquery.mobile-1.3.1.min.css">
-	<link rel="stylesheet" href="_assets/css/jqm-demos.css">
-	<link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-	<script src="js/jquery.js"></script>
-	<script src="_assets/js/index.js"></script>
-	<script src="js/jquery.mobile-1.3.1.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
+	<title>Grids - jQuery Mobile Demos</title>
+	<link rel="stylesheet"  href="../../css/themes/default/jquery.mobile-1.3.1.min.css">
+	<link rel="stylesheet" href="../../_assets/css/jqm-demos.css">
+	<link rel="shortcut icon" href="../../favicon.ico">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<script src="../../js/jquery.js"></script>
+	<script src="../../_assets/js/index.js"></script>
+	<script src="../../js/jquery.mobile-1.3.1.min.js"></script>
+	<!-- We're using a style block to make it easy to view the custom styles -->
+	<!-- In production, these should be added to a custom.css file loaded in the head -->
+	<style>
+		/* Basic styles */
+		.rwd-example .ui-body {
+			text-align: left;
+			border-color: #ddd;
+		}
+		.rwd-example p {
+			color: #777;
+			line-height: 140%
+		}
+	
+		/* Stack all blocks to start */
+		.rwd-example .ui-block-a,
+		.rwd-example .ui-block-b,
+		.rwd-example .ui-block-c {
+			width: 100%;
+			float: none;
+		}
+		
+		/* Collapsing borders */
+		.rwd-example > div + div .ui-body {
+			border-top-width: 0;
+		}
+	
+		/* 1st breakpoint - Float B and C, leave A full width on top */
+		@media all and (min-width: 42em) {
+			.rwd-example {
+				overflow: hidden; /* Use this or a "clearfix" to give the container height */
+			}
+			.rwd-example .ui-body {
+			   min-height: 14em;
+			}
+			.rwd-example .ui-block-b,
+			.rwd-example .ui-block-c {
+			  float: left;
+			  width: 49.95%;
+			}
+			.rwd-example .ui-block-b p,
+			.rwd-example .ui-block-c p {
+			  font-size: .8em;
+			}
+			.rwd-example > div + div .ui-body {
+				border-top-width: 1px;
+			}
+			.rwd-example > div:first-child .ui-body {
+				border-bottom-width: 0;
+			}
+			.rwd-example > div:last-child .ui-body {
+				border-left-width: 0;
+			}
+		}
+	
+		/* 2nd breakpoint - Float all, 50/25/25 */
+		@media all and (min-width: 55em) {
+			.rwd-example .ui-body {
+			   min-height: 18em;
+			}
+			.rwd-example .ui-block-a,
+			.rwd-example .ui-block-c {
+			  float: left;
+			  width: 49.95%;
+			}
+			.rwd-example .ui-block-b,
+			.rwd-example .ui-block-c {
+			  float: left;
+			  width: 24.925%;
+			}
+			.rwd-example > div:first-child .ui-body {
+				border-bottom-width: 1px;
+			}
+			.rwd-example > div + div .ui-body {
+				border-left-width: 0;
+			}
+		}
+	
+		/* 3rd breakpoint - Bump up font size at very wide screens */
+		@media all and (min-width: 75em) {
+			.rwd-example .ui-body {
+			  font-size: 125%;
+			}
+			.rwd-example .ui-block-a,
+			.rwd-example .ui-block-c {
+			  float: left;
+			  width: 49.95%;
+			}
+			.rwd-example .ui-block-b,
+			.rwd-example .ui-block-c {
+			  float: left;
+			  width: 24.925%;
+			}
+		}
+	</style>
 </head>
 <body>
-<div data-role="page" class="jqm-demos jqm-demos-home">
+<div data-role="page" class="jqm-demos">
 
 	<div data-role="header" class="jqm-header">
-		<h1 class="jqm-logo"><img src="_assets/img/jquery-logo.png" alt="jQuery Mobile Framework"></h1>
-		<a href="#" class="jqm-search-link ui-btn-right" data-icon="search" data-iconpos="notext">Search</a>
+		<h1 class="jqm-logo"><a href="../../"><img src="../../_assets/img/jquery-logo.png" alt="jQuery Mobile Framework"></a></h1>
+		<a href="#" class="jqm-navmenu-link" data-icon="bars" data-iconpos="notext">Navigation</a>
+		<a href="#" class="jqm-search-link" data-icon="search" data-iconpos="notext">Search</a>
 <div class="jqm-search">
     <ul class="jqm-list">
 <li data-section="Widgets" data-filtertext="accordions collapsible sets content formatting grouped inset mini"><a href="widgets/accordions/">Accordion</a></li>
@@ -242,33 +336,63 @@
 
 	<div data-role="content" class="jqm-content">
 
-		<div class="jqm-home-welcome">
-		<h2>Demo center for <span class="jqm-version-number"></span></h2>
+        <h2>Custom responsive grid</h2>
+        
+        <p>It's easy to extend the basic grid styles into a custom responsive layout by using CSS media queries to adjust the layout and design across various screen width breakpoints.</p>
+        
+        <p>This example is a typical news feature block that changes its layout across screen widths and illustrates how to change the grid ratios and overall layout with simple CSS. It starts as a simple set of stacked stories on phones, that goes to a layout with the lead story full width stacked over a 50/50 layout of the secondary stories. At wider widths, these secondary stories float next to the lead story in a 50/25/25 layout. When the screen gets very wide, the font size is bumped up to keep line lengths short.</p>
+        <p>Use the view source button below to see how the media queries work for each of these breakpoints.</p>
 
-		<p class="jqm-intro">jQuery Mobile is a touch-optimized HTML5 UI framework designed to make sites and apps that are accessible on all popular smartphone, tablet and desktop devices.</p>
+        <!-- view source utilty wrapper -->
+        <div data-demo-html="true" data-demo-css="true">
+        
+            <div class="rwd-example">
+            
+                <!-- Lead story block -->
+                <div class="ui-block-a">
+                    <div class="ui-body ui-body-d">
+                        <h2>Apple schedules 'iPad Mini' event for October 23</h2>
+                        <p>One of the worst-kept secrets in tech has been confirmed: Apple will hold an event October 23 in San Jose, California, at which the company is widely expected to unveil a smaller, cheaper version of its popular iPad called "Mini".</p>
+                    </div>
+                </div>
+                
+                <!-- secondary story block #1 -->
+                <div class="ui-block-b">
+                    <div class="ui-body ui-body-d">
+                        <h4>Microsoft Surface tablet goes on sale for $499</h4>
+                        <p>The Microsoft Surface tablet picture has come into focus. The Redmond giant filled in the blanks on the new tablet's availability and specs.</p>
+                    </div>
+                </div>
+                
+                <!-- secondary story block #2 -->
+                <div class="ui-block-c">
+                    <div class="ui-body ui-body-d">
+                        <h4>AOL unveils Alto, an email service that syncs 5 accounts</h4>
+                        <p>AOL, struggling to shed its outdated image, is reimagining one of the most visibly aging parts of its platform: Its email service. </p>
+                    </div>
+                </div>
+            
+            </div><!-- /rwd-example -->
+        
+        </div><!-- /data-demo -->
+            
+		<a href="./" class="jqm-button" data-ajax="false" data-role="button" data-mini="true" data-inline="true" data-icon="arrow-l" data-iconpos="left">Back to Grids</a>
 
-        <p class="jqm-intro"><small>For technical info,&nbsp;visit the <a href="#api-popup" data-rel="popup" data-transition="slideup" data-position-to="window">API documentation</a>.</small></p>
+	</div><!-- /content -->
 
-		</div>
-
-		<div data-role="popup" id="api-popup" class="home-pop ui-content" data-theme="d" data-overlay-theme="b">
-			<p>The API docs are a separate site from the demos and cover the technical details of each jQuery Mobile plugin in depth.</p>
-			<a href="#" data-role="button" data-inline="true" data-rel="back"  data-mini="true" data-theme="c">Stay here</a>
-			<a href="http://api.jquerymobile.com" class="jqm-button" data-ajax="false" data-role="button" data-inline="true" data-mini="true" data-icon="arrow-r" data-iconpos="right" data-theme="f">Visit API Site </a>
-		</div>
-
-		<ul data-role="listview" data-inset="true" data-theme="d" data-icon="false" data-filter-placeholder="Search..." class="jqm-list jqm-home-list">
-            <li><a href="intro/"><h2>Introduction</h2><p>New to jQuery Mobile? Start here.</p></a></li>
-            <li><a href="examples/"><h2>Demo Showcase</h2><p>Examples of how to customize and extend jQuery Mobile.</p></a></li>
-            <li><a href="faq/"><h2>Questions &amp; Answers</h2><p>Common issues and questions, explained.</p></a></li>
-			<li data-section="Widgets" data-filtertext="responsive web design rwd adaptive PE accessible mobile breakpoints media query"><a href="intro/rwd.html"><h2>Going Responsive</h2><p>How to use RWD with jQuery Mobile</p></a></li>
-		</ul>
-
-		<h2 class="jqm-home-widget">Widget reference</h2>
-
-		<p class="jqm-intro">Test drive every component in the library, and easily build pages by copying and pasting the markup configuration you need.</p>
-
-		<ul data-role="listview" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="d" data-icon="false" data-filter-placeholder="Search widgets..." data-global-nav="demos" class="jqm-list">
+    <div data-role="footer" class="jqm-footer">
+        <p class="jqm-version"></p>
+        <p>Copyright 2013 The jQuery Foundation</p>
+    </div><!-- /footer -->
+    <div data-role="panel" class="jqm-nav-panel jqm-navmenu-panel" data-position="left" data-display="reveal" data-theme="c">
+        <ul data-role="listview" data-theme="d" data-divider-theme="d" data-icon="false" data-global-nav="demos" class="jqm-list">
+            <li data-role="list-divider">jQuery Mobile Demos</li>
+			<li><a href="./">Home</a></li>
+            <li><a href="intro/">Introduction</a></li>
+            <li><a href="examples/">Demo Showcase</a></li>
+            <li><a href="faq/">Questions & Answers</a></li>
+			<li><a href="intro/rwd.html">Going Responsive</a></li>
+            <li data-role="list-divider">Widget reference</li>
 <li data-section="Widgets" data-filtertext="accordions collapsible sets content formatting grouped inset mini"><a href="widgets/accordions/">Accordion</a></li>
 
 <li data-section="Widgets" data-filtertext="ajax navigation navigate event method"><a href="widgets/navigation/" data-ajax="false">AJAX Navigation</a></li>
@@ -332,13 +456,8 @@
 <li data-section="Widgets" data-filtertext="page transitions animated pages ajax navigation flip slide fade pop" data-ajax="false"><a href="widgets/transitions/" data-ajax="false">Transitions</a></li>
 
         </ul>
+	</div><!-- /panel -->
 
-	</div><!-- /content -->
-
-	<div data-role="footer" class="jqm-footer">
-		<p class="jqm-version"></p>
-		<p>Copyright 2013 The jQuery Foundation</p>
-	</div><!-- /jqm-footer -->
 
 </div><!-- /page -->
 </body>
