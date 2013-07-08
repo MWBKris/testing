@@ -45,8 +45,8 @@ var app = {
             var options = {
                 provider:"apigee",
                 orgName:"krisMWB",
-                appName:"sandbox",
-                notifier:"android1",
+                appName:"Android1",
+                notifier:"Android1",
                 deviceId:device.deviceId
             };
 
@@ -62,8 +62,8 @@ var app = {
             var options = {
              provider:"apigee",
              orgName:"krisMWB",
-             appName:"sandbox",
-             notifier:"android1",
+             appName:"Android1",
+             notifier:"Android1",
              message:"Hello!"
             };
             
