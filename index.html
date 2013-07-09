@@ -44,9 +44,11 @@
         function onDeviceReady() {
                 alert("Device is Ready");
 				var pushNotification = window.pushNotification;
+				 alert("1");
         var gcmOptions = {
             gcmSenderId:"395880463247"
         };
+		alert("2");
         pushNotification.registerDevice(gcmOptions, function(device){
             var options = {
                 provider:"apigee",
@@ -55,7 +57,7 @@
                 notifier:"android1",
                 deviceId:device.deviceId
             };
-
+			alert("3");
 
             console.log(JSON.stringify(options));
             
