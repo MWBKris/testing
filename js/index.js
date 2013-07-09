@@ -30,14 +30,14 @@ var app = {
 		
 		document.addEventListener("deviceready", function(){
 			alert("123");
-		},true);
+		},false);
 		
 		
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        /*document.addEventListener('deviceready', this.onDeviceReady, false);
          document.addEventListener('push-notification', function(event) {
             console.log('push-notification!:'+JSON.stringify(event.notification.message));
             navigator.notification.alert(event.notification.message);
-        });
+        });*/
     },
     // deviceready Event Handler
     //
