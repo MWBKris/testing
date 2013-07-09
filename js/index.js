@@ -44,9 +44,9 @@ var app = {
         pushNotification.registerDevice(gcmOptions, function(device){
             var options = {
                 provider:"apigee",
-                orgName:"krisMWB",
+                orgName:"krismwb",
                 appName:"sandbox",
-                notifier:"Android1",
+                notifier:"Android2",
                 deviceId:device.deviceId
             };
 
@@ -61,9 +61,9 @@ var app = {
             //push here
             var options = {
              provider:"apigee",
-             orgName:"krisMWB",
+             orgName:"krismwb",
              appName:"sandbox",
-             notifier:"Android1",
+             notifier:"Android2",
              message:"Hello!"
             };
             
