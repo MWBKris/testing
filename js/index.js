@@ -37,15 +37,19 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        var pushNotification = window.pushNotification;
+        alert("START");
+		var pushNotification = window.pushNotification;
+		 alert("START2");
         var gcmOptions = {
             gcmSenderId:"395880463247"
         };
 		
 		if(pushNotification){
-		alert("GOT HERE");
+			alert("GOT HERE");
 		}
-		else alert("NOT");
+		else{
+			alert("NOT");
+		}
 		
         pushNotification.registerDevice(gcmOptions, function(device){
             var options = {
