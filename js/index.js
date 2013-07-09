@@ -27,11 +27,12 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-		
+		alert("0");
 		window.addEventListener('load', function () {
-    document.addEventListener('deviceready', function () {
-        alert("PhoneGap is now loaded!");
-    }, false);
-}, false);
+			alert("1");
+			document.addEventListener('deviceready', function () {
+				alert("2");
+			}, false);
+		}, false);
     }
 };
