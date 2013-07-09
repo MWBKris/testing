@@ -19,7 +19,7 @@
 var app = {
     // Application Constructor
     initialize: function() {
-		alert("start");
+		alert("start1");
         this.bindEvents();
     },
     // Bind Event Listeners
@@ -43,10 +43,9 @@ var app = {
             gcmSenderId:"395880463247"
         };
         pushNotification.registerDevice(gcmOptions, function(device){
-			alert(device.deviceId);
             var options = {
                 provider:"apigee",
-                orgName:"krismwb",
+                orgName:"KrisMWB",
                 appName:"sandbox",
                 notifier:"Android2",
                 deviceId:device.deviceId
@@ -61,10 +60,9 @@ var app = {
         });
         $("#push").on("click", function(e){
             //push here
-			alert("test");
             var options = {
              provider:"apigee",
-             orgName:"krismwb",
+             orgName:"KrisMWB",
              appName:"sandbox",
              notifier:"Android2",
              message:"Hello!"
