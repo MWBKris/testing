@@ -46,6 +46,7 @@
             console.log(JSON.stringify(options));
             
             pushNotification.registerWithPushProvider(options, function(result){
+				alert(result);
                 console.log(result);
             })
         });
