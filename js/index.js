@@ -28,9 +28,8 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
 		
-		document.addEventListener("deviceready", function(){
-			alert("123");
-		},false);
+		document.addEventListener("deviceready", Testing(), true); 
+    
 		
 		
         /*document.addEventListener('deviceready', this.onDeviceReady, false);
@@ -39,6 +38,10 @@ var app = {
             navigator.notification.alert(event.notification.message);
         });*/
     },
+	
+	Testing: function() {
+        alert ('123');
+    }
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
