@@ -20,19 +20,68 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
-
     },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-		alert("0");
-		window.addEventListener('load', function () {
-			alert("1");
-			document.addEventListener('deviceready', function () {
-				alert("2");
-			}, false);
-		}, false);
+        document.addEventListener('load', this.onDeviceReady, false);
+         document.addEventListener('push-notification', function(event) {
+            console.log('push-notification!:'+JSON.stringify(event.notification.message));
+            navigator.notification.alert(event.notification.message);
+        });
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicity call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        var pushNotification = window.pushNotification;
+        var gcmOptions = {
+            gcmSenderId:"395880463247"
+        };
+        pushNotification.registerDevice(gcmOptions, function(device){
+            var options = {
+                provider:"apigee",
+                orgName:"krisMWB",
+                appName:"sandbox",
+                notifier:"android1",
+                deviceId:device.deviceId
+            };
+
+
+            console.log(JSON.stringify(options));
+            
+            pushNotification.registerWithPushProvider(options, function(result){
+                console.log(result);
+            })
+        });
+        $("#push").on("click", function(e){
+            //push here
+            var options = {
+             provider:"apigee",
+             orgName:"krisMWB",
+             appName:"sandbox",
+             notifier:"android1",
+             message:"Hello!"
+            };
+            
+            pushNotification.pushNotificationToDevice(options, function(result){
+                console.log(result);
+            });
+        });
+        app.receivedEvent('deviceready');
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+
+        console.log('Received Event: ' + id);
     }
 };
