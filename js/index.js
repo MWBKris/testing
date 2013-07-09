@@ -28,81 +28,10 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
 		
-		document.addEventListener("deviceready", Testing(), true); 
-    
-		
-		
-        /*document.addEventListener('deviceready', this.onDeviceReady, false);
-         document.addEventListener('push-notification', function(event) {
-            console.log('push-notification!:'+JSON.stringify(event.notification.message));
-            navigator.notification.alert(event.notification.message);
-        });*/
-    },
-	
-	Testing: function() {
-        alert ('123');
-    },
-	
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        alert("START");
-		var pushNotification = window.pushNotification;
-		 alert("START2");
-        var gcmOptions = {
-            gcmSenderId:"395880463247"
-        };
-		
-		if(pushNotification){
-			alert("GOT HERE");
-		}
-		else{
-			alert("NOT");
-		}
-		
-        pushNotification.registerDevice(gcmOptions, function(device){
-            var options = {
-                provider:"apigee",
-                orgName:"krisMWB",
-                appName:"sandbox",
-                notifier:"android",
-                deviceId:device.deviceId
-            };
-
-
-            console.log(JSON.stringify(options));
-            
-            pushNotification.registerWithPushProvider(options, function(result){
-                console.log(result);
-            })
-        });
-        $("#push").on("click", function(e){
-            //push here
-            var options = {
-             provider:"apigee",
-             orgName:"krisMWB",
-             appName:"sandbox",
-             notifier:"android",
-             message:"Hello!"
-            };
-            
-            pushNotification.pushNotificationToDevice(options, function(result){
-                console.log(result);
-            });
-        });
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+		window.addEventListener('load', function () {
+    document.addEventListener('deviceready', function () {
+        alert("PhoneGap is now loaded!");
+    }, false);
+}, false);
     }
 };
