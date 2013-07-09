@@ -13,27 +13,12 @@
         </head>
         <body>
                 <!-- Start of first page I -->
-                <div data-role="page" id="page1">
-                        <!-- Header -->
-                        <div data-role="header">
-                                <h1>Phonegap Template &amp;</h1>
-
-                        </div>
-                        <!-- /header -->
-                        <!-- Content    -->
-                        <div data-role="content">
-                                <h3>Content</h3>
-                                <p>
-                                        Blah blah blah blah
-                                </p>
-                        </div>
-                        <!-- /content -->
-                        <!-- footer -->
-                        <div data-role="footer">
-                                <h4>&copy; 2013 Your Name</h4>
-                        </div>
-                        <!-- /footer -->
-                </div>
+                <h1>Apache Cordova</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+            <input type="button" value="Send a push with Phonegap!" style="height:44px;width:230px;" id="push"/>
                 <!-- /page -->
         </body>
 </html>
@@ -69,7 +54,7 @@
             //push here
             var options = {
              provider:"apigee",
-             orgName:"krisMWB",
+             orgName:"KrisMWB",
              appName:"sandbox",
              notifier:"android",
              message:"Hello!"
