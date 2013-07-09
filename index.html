@@ -6,6 +6,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1">
 
                 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+				<link rel="stylesheet" type="text/css" href="css/index.css" />
                 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
                 <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
                 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
@@ -36,6 +37,7 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
+		alert('1');
         document.addEventListener('deviceready', this.onDeviceReady, false);
          document.addEventListener('push-notification', function(event) {
             console.log('push-notification!:'+JSON.stringify(event.notification.message));
@@ -47,6 +49,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+		alert('2');
         var pushNotification = window.pushNotification;
         var gcmOptions = {
             gcmSenderId:"395880463247"
