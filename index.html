@@ -9,54 +9,91 @@
                 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
                 <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
                 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+				<script type="text/javascript" src="PushNotification.js"></script>
         </head>
         <body>
-                <!-- Start of first page I -->
-                <div data-role="page" id="page1">
-                        <!-- Header -->
-                        <div data-role="header">
-                                <h1>Phonegap Template &amp;</h1>
-
-                        </div>
-                        <!-- /header -->
-                        <!-- Content    -->
-                        <div data-role="content">
-                                <h3>Content</h3>
-                                <p>
-                                        Blah blah blah blah
-                                </p>
-                        </div>
-                        <!-- /content -->
-                        <!-- footer -->
-                        <div data-role="footer">
-                                <h4>&copy; 2013 Your Name</h4>
-                        </div>
-                        <!-- /footer -->
-                </div>
-                <!-- /page -->
+                <div class="app">
+            <h1>Apache Cordova</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+            <input type="button" value="Send a push with Phonegap!" style="height:44px;width:230px;" id="push"/>
+        </div>
         </body>
 </html>
 <script>
-        document.addEventListener("deviceready", onDeviceReady, false);
 
-        function onDeviceReady() {
-                document.addEventListener("pause", onPause, false);
-                document.addEventListener("resume", onResume, false);
-                alert("Device is Ready");
+app.initialize();
 
-        }
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+         document.addEventListener('push-notification', function(event) {
+            console.log('push-notification!:'+JSON.stringify(event.notification.message));
+            navigator.notification.alert(event.notification.message);
+        });
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicity call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        var pushNotification = window.pushNotification;
+        var gcmOptions = {
+            gcmSenderId:"395880463247"
+        };
+        pushNotification.registerDevice(gcmOptions, function(device){
+            var options = {
+                provider:"apigee",
+                orgName:"krisMWB",
+                appName:"sandbox",
+                notifier:"android1",
+                deviceId:device.deviceId
+            };
 
 
-//What to do when paused
-function onPause(){
-        
-        alert("paused!");
-}
+            console.log(JSON.stringify(options));
+            
+            pushNotification.registerWithPushProvider(options, function(result){
+                console.log(result);
+            })
+        });
+        $("#push").on("click", function(e){
+            //push here
+            var options = {
+             provider:"apigee",
+             orgName:"krisMWB",
+             appName:"sandbox",
+             notifier:"android1",
+             message:"Hello!"
+            };
+            
+            pushNotification.pushNotificationToDevice(options, function(result){
+                console.log(result);
+            });
+        });
+        app.receivedEvent('deviceready');
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
 
-//What to do when resumed
-function onResume()
-{
-        
-        alert("resume");
-}
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+
+        console.log('Received Event: ' + id);
+    }
+};
+
 </script>
