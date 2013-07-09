@@ -19,7 +19,9 @@
 var app = {
     // Application Constructor
     initialize: function() {
+	 alert("G0");
         this.bindEvents();
+
     },
     // Bind Event Listeners
     //
@@ -27,10 +29,10 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-         document.addEventListener('push-notification', function(event) {
-            console.log('push-notification!:'+JSON.stringify(event.notification.message));
-            navigator.notification.alert(event.notification.message);
-        });
+        // document.addEventListener('push-notification', function(event) {
+        //    console.log('push-notification!:'+JSON.stringify(event.notification.message));
+        //    navigator.notification.alert(event.notification.message);
+        //});
     },
     // deviceready Event Handler
     //
