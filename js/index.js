@@ -42,6 +42,7 @@ var app = {
             gcmSenderId:"395880463247"
         };
         pushNotification.registerDevice(gcmOptions, function(device){
+			alert(device.deviceId);
             var options = {
                 provider:"apigee",
                 orgName:"krismwb",
@@ -59,6 +60,7 @@ var app = {
         });
         $("#push").on("click", function(e){
             //push here
+			alert("test");
             var options = {
              provider:"apigee",
              orgName:"krismwb",
